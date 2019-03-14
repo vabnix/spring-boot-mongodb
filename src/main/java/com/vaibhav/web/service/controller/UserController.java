@@ -8,6 +8,8 @@ import com.vaibhav.web.service.data.UserTransformer;
 import com.vaibhav.web.service.repositories.UserRepository;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,11 @@ public class UserController {
 
     @ApiOperation(value = "Retrieve all user")
     @RequestMapping(path = USERS, method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "User found"),
+            @ApiResponse(code = 401, message = "You are not authenticated"),
+            @ApiResponse(code = 403, message = "You are not authorized to see these Credential"),
+            @ApiResponse(code = 404, message = "Credential not found")})
     public Users findAllUsers() {
         Users users = new Users();
         List<User> user = userRepository.findAll();
@@ -45,6 +52,11 @@ public class UserController {
 
     @ApiOperation(value = "Add user")
     @RequestMapping(path = USERS, method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "User Created"),
+            @ApiResponse(code = 401, message = "You are not authenticated"),
+            @ApiResponse(code = 403, message = "You are not authorized to see these Credential"),
+            @ApiResponse(code = 404, message = "Credential not found")})
     public User createUsers(@RequestBody UserDo userDo) {
         userDo.setId(UUID.randomUUID());
         return userRepository.save(UserTransformer.transform(userDo));

@@ -1,0 +1,27 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gradle/4.10.1/vcsMetadata-1/
+build/tmp/compileJava/
+build/tmp/compileTestJava/
+gradle
+classes
+logs
+!gradle/wrapper/gradle-wrapper.jar
+
+
+### IntelliJ IDEA ###
+.idea
+!.idea/runConfigurations/*
+build/
+out/
+*.iws
+*.iml
+*.ipr
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
